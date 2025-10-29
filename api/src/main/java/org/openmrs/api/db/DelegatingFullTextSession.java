@@ -44,7 +44,7 @@ public class DelegatingFullTextSession extends SessionDelegatorBaseImpl implemen
 	private ApplicationEventPublisher eventPublisher;
 	
 	public DelegatingFullTextSession(FullTextSession delegate, ApplicationEventPublisher eventPublisher) {
-		super((SessionImplementor) delegate, delegate);
+		super((SessionImplementor) delegate);
 		this.delegate = delegate;
 		this.eventPublisher = eventPublisher;
 	}
