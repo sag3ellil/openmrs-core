@@ -226,7 +226,7 @@
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-ehcache</artifactId>
-				<version>${hibernateVersion}</version>
+				<version>${hibernateEhCacheVersion}</version>
 				<exclusions>
 					<!-- Excluding since we are using a newer version where
 					arifactId is ehcache instead of ehcache-core -->
@@ -1115,9 +1115,9 @@
 		 So this profile is required
 		 -->
 		<profile>
-			<id>java17</id>
+			<id>java21</id>
 			<activation>
-				<jdk>17</jdk>
+				<jdk>21</jdk>
 			</activation>
 			<dependencyManagement>
 				<dependencies>
@@ -1211,9 +1211,16 @@
 			 For instance, our version of Lucene is tied to the version of Hibernate Search. Similarly, our
 			 version of Hibernate Search must be compatible with the version of Hibernate and Hibernate must
 			 be compatible with our version of Spring. -->
-		<springVersion>5.3.30</springVersion>
-		<hibernateVersion>5.6.15.Final</hibernateVersion>
+		
+		<!-- Jakarta EE 10 alignment -->
+		<!-- Use a Hibernate ORM 6.x that implements Jakarta Persistence 3.1 (EE 10 era). -->
+		<springVersion>6.0.4</springVersion>
+		<!-- Hibernate Search 6.x compatible with that Hibernate ORM 6.x -->
+		<hibernateVersion>6.0.0.Final</hibernateVersion>
+		<hibernateEhCacheVersion>6.0.0.Alpha7</hibernateEhCacheVersion>
+		<!-- there is no higher version check this link:  https://openmrs.jfrog.io/ui/native/public/org/hibernate/hibernate-search-orm/ -->
 		<hibernateSearchVersion>5.11.12.Final</hibernateSearchVersion>
+		<!--  NOT keep luceneVersion=5.5.5; Hibernate Search 6 will bring a newer Lucene. -->
 		<luceneVersion>5.5.5</luceneVersion>
 		<aspectjVersion>1.9.22.1</aspectjVersion>
 		<jacksonVersion>2.18.2</jacksonVersion>
