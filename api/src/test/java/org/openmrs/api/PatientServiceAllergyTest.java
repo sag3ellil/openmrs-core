@@ -109,7 +109,7 @@ public class PatientServiceAllergyTest extends BaseContextSensitiveTest {
 		allergies = allergyService.getAllergies(patient);
 		assertEquals(Allergies.SEE_LIST, allergies.getAllergyStatus());
 		assertEquals(1, allergies.size());
-		assertEquals(1, allergies.get(0).getReactions().size());
+		assertEquals(1, allergies.getFirst().getReactions().size());
 	}
 	
 	/**
@@ -128,7 +128,7 @@ public class PatientServiceAllergyTest extends BaseContextSensitiveTest {
 		allergies.remove(getAllergy(allergies, 1));
 		
 		//remove one reaction out of the two
-		getAllergy(allergies, 2).getReactions().remove(0);
+		getAllergy(allergies, 2).getReactions().removeFirst();
 		
 		//add a reaction to the third allergy
 		AllergyReaction reaction = new AllergyReaction(null, new Concept(22), null);
@@ -158,7 +158,7 @@ public class PatientServiceAllergyTest extends BaseContextSensitiveTest {
 		
 		//remove all allergies
 		while (allergies.size() > 0) {
-			allergies.remove(0);
+			allergies.removeFirst();
 		}
 		
 		allergyService.setAllergies(patient, allergies);
@@ -183,7 +183,7 @@ public class PatientServiceAllergyTest extends BaseContextSensitiveTest {
 		
 		//remove all allergies
 		while (allergies.size() > 0) {
-			allergies.remove(0);
+			allergies.removeFirst();
 		}
 		
 		//set the status to no known allergies
@@ -232,7 +232,7 @@ public class PatientServiceAllergyTest extends BaseContextSensitiveTest {
 		assertEquals(Allergies.SEE_LIST, allergies.getAllergyStatus());
 		assertEquals(4, allergies.size());
 				
-		Allergy editedAllergy = allergies.get(0);
+		Allergy editedAllergy = allergies.getFirst();
 		//clear any cache for this object such that the next calls fetch it from the database
 		Context.evictFromSession(editedAllergy);
 		//edit comment
@@ -264,7 +264,7 @@ public class PatientServiceAllergyTest extends BaseContextSensitiveTest {
 		assertEquals(Allergies.SEE_LIST, allergies.getAllergyStatus());
 		assertEquals(4, allergies.size());
 				
-		Allergy editedAllergy = allergies.get(0);
+		Allergy editedAllergy = allergies.getFirst();
 		//clear any cache for this object such that the next calls fetch it from the database
 		Context.evictFromSession(editedAllergy);
 		//edit severity
@@ -296,7 +296,7 @@ public class PatientServiceAllergyTest extends BaseContextSensitiveTest {
 		assertEquals(Allergies.SEE_LIST, allergies.getAllergyStatus());
 		assertEquals(4, allergies.size());
 				
-		Allergy editedAllergy = allergies.get(0);
+		Allergy editedAllergy = allergies.getFirst();
 		//clear any cache for this object such that the next calls fetch it from the database
 		Context.evictFromSession(editedAllergy);
 		//edit coded allergen
@@ -328,7 +328,7 @@ public class PatientServiceAllergyTest extends BaseContextSensitiveTest {
 		assertEquals(Allergies.SEE_LIST, allergies.getAllergyStatus());
 		assertEquals(4, allergies.size());
 				
-		Allergy editedAllergy = allergies.get(0);
+		Allergy editedAllergy = allergies.getFirst();
 		//clear any cache for this object such that the next calls fetch it from the database
 		Context.evictFromSession(editedAllergy);
 		//edit non coded allergen
@@ -364,7 +364,7 @@ public class PatientServiceAllergyTest extends BaseContextSensitiveTest {
 		//clear any cache for this object such that the next calls fetch it from the database
 		Context.evictFromSession(editedAllergy);
 		//remove a reaction
-		editedAllergy.getReactions().remove(0);
+		editedAllergy.getReactions().removeFirst();
 		
 		assertTrue(allergies.contains(editedAllergy));
 
@@ -392,7 +392,7 @@ public class PatientServiceAllergyTest extends BaseContextSensitiveTest {
 		assertEquals(Allergies.SEE_LIST, allergies.getAllergyStatus());
 		assertEquals(4, allergies.size());
 				
-		Allergy editedAllergy = allergies.get(0);
+		Allergy editedAllergy = allergies.getFirst();
 		//clear any cache for this object such that the next calls fetch it from the database
 		Context.evictFromSession(editedAllergy);
 		//add a reaction
@@ -429,7 +429,7 @@ public class PatientServiceAllergyTest extends BaseContextSensitiveTest {
 		//clear any cache for this object such that the next calls fetch it from the database
 		Context.evictFromSession(editedAllergy);
 		//edit a reaction
-		AllergyReaction reaction = editedAllergy.getReactions().get(0);
+		AllergyReaction reaction = editedAllergy.getReactions().getFirst();
 		reaction.setReaction(new Concept(11));
 		
 		assertTrue(allergies.contains(editedAllergy));
@@ -462,7 +462,7 @@ public class PatientServiceAllergyTest extends BaseContextSensitiveTest {
 		//clear any cache for this object such that the next calls fetch it from the database
 		Context.evictFromSession(editedAllergy);
 		//edit a reaction
-		AllergyReaction reaction = editedAllergy.getReactions().get(0);
+		AllergyReaction reaction = editedAllergy.getReactions().getFirst();
 		reaction.setReactionNonCoded("some non coded text");
 		
 		assertTrue(allergies.contains(editedAllergy));

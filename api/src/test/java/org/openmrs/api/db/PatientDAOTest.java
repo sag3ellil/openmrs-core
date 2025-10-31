@@ -139,7 +139,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		assertEquals(1, actualSize);
 		
 		//if actually the search returned the matching patient
-		Patient actualPatient = dao.getPatients("*567", 0, null).get(0);
+		Patient actualPatient = dao.getPatients("*567", 0, null).getFirst();
 		
 		assertEquals(patient2, actualPatient);
 	}
@@ -171,7 +171,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		assertEquals(1, actualSize);
 		
 		//if actually the search returned the matching patient
-		Patient actualPatient = dao.getPatients("%567", 0, null).get(0);
+		Patient actualPatient = dao.getPatients("%567", 0, null).getFirst();
 		
 		assertEquals(patient2, actualPatient);
 	}
@@ -205,7 +205,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		assertEquals(1, actualSize);
 		
 		//if actually the search returned the matching patient
-		Patient actualPatient = dao.getPatients("_567", 0, null).get(0);
+		Patient actualPatient = dao.getPatients("_567", 0, null).getFirst();
 		
 		assertEquals(patient2, actualPatient);
 	}
@@ -234,7 +234,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		int actualSize = dao.getPatients("%ca", 0, null).size();
 		assertEquals(1, actualSize);
 		
-		Patient actualPatient = dao.getPatients("%ca", 0, null).get(0);
+		Patient actualPatient = dao.getPatients("%ca", 0, null).getFirst();
 		//if actually the search returned the matching patient
 		assertEquals(patient2, actualPatient);
 	}
@@ -264,7 +264,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		assertEquals(1, actualSize);
 		
 		//if actually the search returned the matching patient
-		Patient actualPatient = dao.getPatients("_ca", 0, null).get(0);
+		Patient actualPatient = dao.getPatients("_ca", 0, null).getFirst();
 		assertEquals(patient2, actualPatient);
 		
 	}
@@ -294,7 +294,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		assertEquals(1, actualSize);
 		
 		//if actually the search returned the matching patient
-		Patient actualPatient = dao.getPatients("*ca", 0, null).get(0);
+		Patient actualPatient = dao.getPatients("*ca", 0, null).getFirst();
 		assertEquals(patient2, actualPatient);
 	}
 	
@@ -338,7 +338,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<PatientIdentifier> patientIdentifiers = dao.getPatientIdentifiers(null, new ArrayList<>(),
 		    Collections.singletonList(location), new ArrayList<>(), null);
 		assertEquals(1, patientIdentifiers.size());
-		assertEquals("12345K", patientIdentifiers.get(0).getIdentifier());
+		assertEquals("12345K", patientIdentifiers.getFirst().getIdentifier());
 	}
 	
 	/**
@@ -387,7 +387,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 				new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), null);
 		
 		assertEquals(1, patientIdentifiers.size());
-		assertEquals(identifier, patientIdentifiers.get(0).getIdentifier());
+		assertEquals(identifier, patientIdentifiers.getFirst().getIdentifier());
 	}
 	
 	/**
@@ -518,7 +518,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		    null, null, null);
 		
 		assertEquals(patientIdentifierTypes.size(), 1);
-		assertEquals(oldIdNumberNonRetired, patientIdentifierTypes.get(0));
+		assertEquals(oldIdNumberNonRetired, patientIdentifierTypes.getFirst());
 	}
 	
 	/**
@@ -533,7 +533,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<PatientIdentifierType> patientIdentifierTypes = dao.getPatientIdentifierTypes(null, "1", null, null);
 		
 		assertEquals(patientIdentifierTypes.size(), 1);
-		assertEquals(formatOneNonRetired, patientIdentifierTypes.get(0));
+		assertEquals(formatOneNonRetired, patientIdentifierTypes.getFirst());
 	}
 	
 	/**
@@ -566,7 +566,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<PatientIdentifierType> patientIdentifierTypes = dao.getPatientIdentifierTypes(null, null, true, null);
 		
 		assertEquals(patientIdentifierTypes.size(), 1);
-		assertEquals(nonRetiredRequired, patientIdentifierTypes.get(0));
+		assertEquals(nonRetiredRequired, patientIdentifierTypes.getFirst());
 	}
 	
 	/**
@@ -678,7 +678,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Hornblower3", 0, 11);
 		assertEquals(1, patients.size());
 		
-		Patient patient = patients.get(0);
+		Patient patient = patients.getFirst();
 		patient.setVoided(true);
 		for (PersonName name : patient.getNames()) {
 			name.setVoided(true);
@@ -700,7 +700,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Oloo", 0, 11);
 		assertEquals(1, patients.size());
 		
-		Patient patient = patients.get(0);
+		Patient patient = patients.getFirst();
 		
 		Set<PersonName> names = patient.getNames();
 		
@@ -723,7 +723,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Hornblower3", 0, 11);
 		assertEquals(1, patients.size());
 		
-		Patient patient = patients.get(0);
+		Patient patient = patients.getFirst();
 		patient.setVoided(true);
 		for (PersonName name : patient.getNames()) {
 			name.setVoided(true);
@@ -744,7 +744,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Oloo", 0, 11);
 		assertEquals(1, patients.size());
 		
-		Patient patient = patients.get(0);
+		Patient patient = patients.getFirst();
 
 		Set<PersonName> names = patient.getNames();
 		
@@ -765,7 +765,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Oloo", 0, 11);
 		assertEquals(1, patients.size());
 		
-		Patient patient = patients.get(0);
+		Patient patient = patients.getFirst();
 		
 		Set<PersonName> names = patient.getNames();
 		
@@ -783,7 +783,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Oloo", 0, 11);
 		assertEquals(1, patients.size());
 		
-		Patient patient = patients.get(0);
+		Patient patient = patients.getFirst();
 		
 		Set<PersonName> names = patient.getNames();
 		
@@ -804,7 +804,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Bilbo Odilon", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("Bilbo Odilon", patients.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", patients.getFirst().getGivenName());
 	}
 	
 	/**
@@ -815,7 +815,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("B.", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("Bilbo Odilon", patients.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", patients.getFirst().getGivenName());
 	}
 	
 	/**
@@ -826,9 +826,9 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Baggins", 0, 11);
 		
 		assertEquals(2, patients.size());
-		assertEquals("Baggins", patients.get(0).getFamilyName());
+		assertEquals("Baggins", patients.getFirst().getFamilyName());
 		assertEquals("Baggins", patients.get(1).getFamilyName());
-		assertFalse(patients.get(0).getGivenName().equalsIgnoreCase(patients.get(1).getGivenName()));
+		assertFalse(patients.getFirst().getGivenName().equalsIgnoreCase(patients.get(1).getGivenName()));
 	}
 	
 	/**
@@ -839,7 +839,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Senior", 0, 11);
 		
 		assertEquals(2, patients.size());
-		assertEquals("Bilbo Odilon", patients.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", patients.getFirst().getGivenName());
 	}
 	
 	/**
@@ -850,7 +850,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Bilbo Odilon B. Baggins Senior", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("Bilbo Odilon", patients.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", patients.getFirst().getGivenName());
 	}
 	
 	/**
@@ -921,9 +921,9 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("al", 0, 11);
 		
 		assertEquals(3, patients.size());
-		assertEquals("al", patients.get(0).getGivenName());
+		assertEquals("al", patients.getFirst().getGivenName());
 		assertEquals("al", patients.get(1).getGivenName());
-		assertFalse(patients.get(0).getMiddleName().equalsIgnoreCase(patients.get(1).getMiddleName()));
+		assertFalse(patients.getFirst().getMiddleName().equalsIgnoreCase(patients.get(1).getMiddleName()));
 	}
 	
 	/**
@@ -934,7 +934,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("ec", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("ec", patients.get(0).getMiddleName());
+		assertEquals("ec", patients.getFirst().getMiddleName());
 	}
 	
 	/**
@@ -945,9 +945,9 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("ki", 0, 11);
 		
 		assertEquals(2, patients.size());
-		assertEquals("ki", patients.get(0).getFamilyName());
+		assertEquals("ki", patients.getFirst().getFamilyName());
 		assertEquals("ki", patients.get(1).getFamilyName());
-		assertFalse(patients.get(0).getMiddleName().equalsIgnoreCase(patients.get(1).getMiddleName()));
+		assertFalse(patients.getFirst().getMiddleName().equalsIgnoreCase(patients.get(1).getMiddleName()));
 	}
 	
 	/**
@@ -958,7 +958,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("os", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("br", patients.get(0).getGivenName());
+		assertEquals("br", patients.getFirst().getGivenName());
 	}
 	
 	/**
@@ -969,7 +969,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("br fo ki os", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("fo", patients.get(0).getMiddleName());
+		assertEquals("fo", patients.getFirst().getMiddleName());
 	}
 	
 	/**
@@ -980,7 +980,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("al mi", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("ec", patients.get(0).getMiddleName());
+		assertEquals("ec", patients.getFirst().getMiddleName());
 	}
 	
 	/**
@@ -1035,9 +1035,9 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Bagg", 0, 11);
 		
 		assertEquals(2, patients.size());
-		assertEquals("Baggins", patients.get(0).getFamilyName());
+		assertEquals("Baggins", patients.getFirst().getFamilyName());
 		assertEquals("Baggins", patients.get(1).getFamilyName());
-		assertFalse(patients.get(0).getGivenName().equalsIgnoreCase(patients.get(1).getGivenName()));
+		assertFalse(patients.getFirst().getGivenName().equalsIgnoreCase(patients.get(1).getGivenName()));
 		
 		if (oldPropertyValue != null) {
 			globalPropertiesTestHelper.setGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_PATIENT_SEARCH_MATCH_MODE,
@@ -1059,9 +1059,9 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("aggins", 0, 11);
 		
 		assertEquals(2, patients.size());
-		assertEquals("Baggins", patients.get(0).getFamilyName());
+		assertEquals("Baggins", patients.getFirst().getFamilyName());
 		assertEquals("Baggins", patients.get(1).getFamilyName());
-		assertFalse(patients.get(0).getGivenName().equalsIgnoreCase(patients.get(1).getGivenName()));
+		assertFalse(patients.getFirst().getGivenName().equalsIgnoreCase(patients.get(1).getGivenName()));
 		
 		if (oldPropertyValue != null) {
 			globalPropertiesTestHelper.setGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_PATIENT_SEARCH_MATCH_MODE,
@@ -1119,7 +1119,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("42-42-42", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("Bilbo Odilon", patients.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", patients.getFirst().getGivenName());
 	}
 	
 	/**
@@ -1170,7 +1170,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Bilbo Odilon", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("Bilbo Odilon", patients.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", patients.getFirst().getGivenName());
 	}
 	
 	/**
@@ -1182,7 +1182,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("42-42-42", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("Bilbo Odilon", patients.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", patients.getFirst().getGivenName());
 	}
 	
 	/**
@@ -1193,7 +1193,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Bilbo Odilon B.", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("Bilbo Odilon", patients.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", patients.getFirst().getGivenName());
 	}
 	
 	/**
@@ -1222,7 +1222,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Bilbo Odilon", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("Bilbo Odilon", patients.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", patients.getFirst().getGivenName());
 	}
 	
 	/**
@@ -1233,7 +1233,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("B.", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("Bilbo Odilon", patients.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", patients.getFirst().getGivenName());
 	}
 	
 	/**
@@ -1244,9 +1244,9 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Baggins", 0, 11);
 		
 		assertEquals(2, patients.size());
-		assertEquals("Baggins", patients.get(0).getFamilyName());
+		assertEquals("Baggins", patients.getFirst().getFamilyName());
 		assertEquals("Baggins", patients.get(1).getFamilyName());
-		assertFalse(patients.get(0).getGivenName().equalsIgnoreCase(patients.get(1).getGivenName()));
+		assertFalse(patients.getFirst().getGivenName().equalsIgnoreCase(patients.get(1).getGivenName()));
 	}
 	
 	/**
@@ -1257,7 +1257,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Junior", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("Frodo Ansilon", patients.get(0).getGivenName());
+		assertEquals("Frodo Ansilon", patients.getFirst().getGivenName());
 	}
 	
 	/**
@@ -1268,7 +1268,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Bilbo Odilon B. Baggins Senior", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("Bilbo Odilon", patients.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", patients.getFirst().getGivenName());
 	}
 	
 	/**
@@ -1315,9 +1315,9 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("al", 0, 11);
 		
 		assertEquals(3, patients.size());
-		assertEquals("al", patients.get(0).getGivenName());
+		assertEquals("al", patients.getFirst().getGivenName());
 		assertEquals("al", patients.get(1).getGivenName());
-		assertFalse(patients.get(0).getMiddleName().equalsIgnoreCase(patients.get(1).getMiddleName()));
+		assertFalse(patients.getFirst().getMiddleName().equalsIgnoreCase(patients.get(1).getMiddleName()));
 	}
 	
 	/**
@@ -1328,7 +1328,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("ec", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("ec", patients.get(0).getMiddleName());
+		assertEquals("ec", patients.getFirst().getMiddleName());
 	}
 	
 	/**
@@ -1339,9 +1339,9 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("ki", 0, 11);
 		
 		assertEquals(2, patients.size());
-		assertEquals("ki", patients.get(0).getFamilyName());
+		assertEquals("ki", patients.getFirst().getFamilyName());
 		assertEquals("ki", patients.get(1).getFamilyName());
-		assertFalse(patients.get(0).getMiddleName().equalsIgnoreCase(patients.get(1).getMiddleName()));
+		assertFalse(patients.getFirst().getMiddleName().equalsIgnoreCase(patients.get(1).getMiddleName()));
 	}
 	
 	/**
@@ -1352,7 +1352,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("os", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("br", patients.get(0).getGivenName());
+		assertEquals("br", patients.getFirst().getGivenName());
 	}
 	
 	/**
@@ -1363,7 +1363,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("br fo ki os", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("fo", patients.get(0).getMiddleName());
+		assertEquals("fo", patients.getFirst().getMiddleName());
 	}
 	
 	/**
@@ -1374,7 +1374,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("al mi", 0, 11);
 		
 		assertEquals(1, patients.size());
-		assertEquals("ec", patients.get(0).getMiddleName());
+		assertEquals("ec", patients.getFirst().getMiddleName());
 	}
 	
 	/**
@@ -1423,7 +1423,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 	public void getPatients_shouldGetPatientByIdentifier_SignatureNo2() {
 		List<Patient> patients = dao.getPatients("42-42-42", 0, 11);
 		assertEquals(1, patients.size());
-		assertEquals("Bilbo Odilon", patients.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", patients.getFirst().getGivenName());
 	}
 	
 	/**
@@ -1522,9 +1522,9 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Senior ring bearer", 0, 11);
 		
 		assertEquals(2, patients.size());
-		assertEquals("Baggins", patients.get(0).getFamilyName());
+		assertEquals("Baggins", patients.getFirst().getFamilyName());
 		assertEquals("Baggins", patients.get(1).getFamilyName());
-		assertFalse(patients.get(0).getGivenName().equalsIgnoreCase(patients.get(1).getGivenName()));
+		assertFalse(patients.getFirst().getGivenName().equalsIgnoreCase(patients.get(1).getGivenName()));
 	}
 	
 	/**
@@ -1681,11 +1681,11 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		updateSearchIndex();
 		
 		List<Patient> patients = dao.getPatients("alpha", 0 , null);
-		assertEquals(patient, patients.get(0));
+		assertEquals(patient, patients.getFirst());
 		assertEquals(3,patients.size());
 		
 		List<Patient> first_patient = dao.getPatients("alpha", 0, 1);
-		assertEquals(patient, first_patient.get(0));
+		assertEquals(patient, first_patient.getFirst());
 		assertEquals(1,first_patient.size());
 		
 		List<Patient> two_patients_only = dao.getPatients("alpha", 0, 2);
@@ -1710,11 +1710,11 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		updateSearchIndex();
 		
 		List<Patient> patients = dao.getPatients("Senior", 0 , null);
-		assertEquals(patient, patients.get(0));
+		assertEquals(patient, patients.getFirst());
 		assertEquals(3,patients.size());
 		
 		List<Patient> first_patient = dao.getPatients("Senior", 0, 1);
-		assertEquals(patient, first_patient.get(0));
+		assertEquals(patient, first_patient.getFirst());
 		assertEquals(1,first_patient.size());
 		
 		List<Patient> two_patients_only = dao.getPatients("Senior", 0, 2);
@@ -1759,9 +1759,9 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Bagg", 0, 11);
 		
 		assertEquals(2, patients.size());
-		assertEquals("Baggins", patients.get(0).getFamilyName());
+		assertEquals("Baggins", patients.getFirst().getFamilyName());
 		assertEquals("Baggins", patients.get(1).getFamilyName());
-		assertFalse(patients.get(0).getGivenName().equalsIgnoreCase(patients.get(1).getGivenName()));
+		assertFalse(patients.getFirst().getGivenName().equalsIgnoreCase(patients.get(1).getGivenName()));
 		
 		if (oldPropertyValue != null) {
 			globalPropertiesTestHelper.setGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_PATIENT_SEARCH_MATCH_MODE,
@@ -1783,9 +1783,9 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("aggins", 0, 11);
 		
 		assertEquals(2, patients.size());
-		assertEquals("Baggins", patients.get(0).getFamilyName());
+		assertEquals("Baggins", patients.getFirst().getFamilyName());
 		assertEquals("Baggins", patients.get(1).getFamilyName());
-		assertFalse(patients.get(0).getGivenName().equalsIgnoreCase(patients.get(1).getGivenName()));
+		assertFalse(patients.getFirst().getGivenName().equalsIgnoreCase(patients.get(1).getGivenName()));
 		
 		if (oldPropertyValue != null) {
 			globalPropertiesTestHelper.setGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_PATIENT_SEARCH_MATCH_MODE,
@@ -2000,7 +2000,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		List<Patient> patients = dao.getPatients("Ben", 0, 11);
 		
 		assertEquals(4, patients.size());
-		assertEquals("Ben", patients.get(0).getGivenName());
+		assertEquals("Ben", patients.getFirst().getGivenName());
 		assertEquals("Alan", patients.get(1).getGivenName());
 		assertEquals("Benedict", patients.get(2).getGivenName());
 		assertEquals("Adam", patients.get(3).getGivenName());
@@ -2008,7 +2008,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		patients = dao.getPatients("Ben Frank", 0, 11);
 		
 		assertEquals(4, patients.size());
-		assertEquals("Ben", patients.get(0).getGivenName());
+		assertEquals("Ben", patients.getFirst().getGivenName());
 		assertEquals("Alan", patients.get(1).getGivenName());
 		assertEquals("Benedict", patients.get(2).getGivenName());
 		assertEquals("Adam", patients.get(3).getGivenName());
@@ -2183,7 +2183,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		
 		List<Patient> patients = dao.getPatients("42-42", false, 0, null);
 		assertEquals(1, patients.size());
-		assertEquals("42-42-42",patients.get(0).getPatientIdentifier().toString());
+		assertEquals("42-42-42",patients.getFirst().getPatientIdentifier().toString());
 		if (oldPropertyValue != null) {
 			globalPropertiesTestHelper.setGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_PATIENT_IDENTIFIER_SEARCH_MATCH_MODE,
 					oldPropertyValue);
@@ -2218,7 +2218,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		
 		List<Patient> patients = dao.getPatients("voided", true, 0, 11);
 		assertEquals(3, patients.size());
-		assertEquals(42, (int) patients.get(0).getPersonId());
+		assertEquals(42, (int) patients.getFirst().getPersonId());
 		if (oldPropertyValue != null) {
 			globalPropertiesTestHelper.setGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_PATIENT_IDENTIFIER_SEARCH_MATCH_MODE,
 					oldPropertyValue);
@@ -2242,7 +2242,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		//Check for partial identifier match
 		List<Patient> patients = dao.getPatients("OM", false, 0, null);
 		assertEquals(1, patients.size());
-		assertEquals("OM292", patients.get(0).getPatientIdentifier(5).toString());
+		assertEquals("OM292", patients.getFirst().getPatientIdentifier(5).toString());
 		
 		if (oldPropertyValue != null) {
 			globalPropertiesTestHelper.setGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_PATIENT_IDENTIFIER_SEARCH_MATCH_MODE,
@@ -2330,7 +2330,7 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		//Check for partial identifier match
 		List<Patient> patients = dao.getPatients("BAH5", false, 0, null);
 		assertEquals(1,patients.size());
-		assertEquals("BAH509", patients.get(0).getPatientIdentifier(5).toString());
+		assertEquals("BAH509", patients.getFirst().getPatientIdentifier(5).toString());
 		if (oldPropertyValue != null) {
 			globalPropertiesTestHelper.setGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_PATIENT_IDENTIFIER_SEARCH_MATCH_MODE,
 					oldPropertyValue);
@@ -2352,8 +2352,8 @@ public class PatientDAOTest extends BaseContextSensitiveTest {
 		updateSearchIndex();
 		List<Patient> patients = dao.getPatients("292", false, 0, null);
 		assertEquals(1, patients.size());
-		assertEquals("OM292", patients.get(0).getPatientIdentifier(5).toString());
-		Patient actualPatient = patients.get(0);
+		assertEquals("OM292", patients.getFirst().getPatientIdentifier(5).toString());
+		Patient actualPatient = patients.getFirst();
 		assertEquals(patient, actualPatient);
 		
 		if (oldPropertyValue != null) {

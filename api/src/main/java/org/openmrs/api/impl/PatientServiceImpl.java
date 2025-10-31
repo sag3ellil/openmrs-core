@@ -225,8 +225,8 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 			return null;
 		}
 		person = HibernateUtil.getRealObjectFromProxy(person);
-		if (person instanceof Patient) {
-			return (Patient)person;
+		if (person instanceof Patient patient) {
+			return patient;
 		}
 		else {
 			return new Patient(person);
@@ -448,7 +448,7 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 		List<PatientIdentifierType> types = getPatientIdentifierTypes(name, null, null, null);
 		
 		if (!types.isEmpty()) {
-			return types.get(0);
+			return types.getFirst();
 		}
 		
 		return null;
@@ -1022,7 +1022,7 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 						// already has a reason for exit - let's edit it.
 						log.debug("Already has a reason for exit, so changing it");
 						
-						obsExit = obssExit.iterator().next();
+						obsExit = obssExit.getFirst();
 						
 					} else {
 						// no reason for exit obs yet, so let's make one
@@ -1144,7 +1144,7 @@ public class PatientServiceImpl extends BaseOpenmrsService implements PatientSer
 						// already has a cause of death - let's edit it.
 						log.debug("Already has a cause of death, so changing it");
 						
-						obsDeath = obssDeath.iterator().next();
+						obsDeath = obssDeath.getFirst();
 						
 					} else {
 						// no cause of death obs yet, so let's make one

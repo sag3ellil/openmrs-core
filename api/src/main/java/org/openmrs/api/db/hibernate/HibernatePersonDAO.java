@@ -111,7 +111,7 @@ public class HibernatePersonDAO implements PersonDAO {
 		int maxResults = HibernatePersonDAO.getMaximumSearchResults();
 		LinkedHashSet<Person> people = new LinkedHashSet<>();
 		
-		LuceneQuery<PersonName> luceneQuery = personLuceneQuery.getSoundexPersonNameSearchOnThreeNames(name1, name2, name3, birthyear, false, gender);;
+		LuceneQuery<PersonName> luceneQuery = personLuceneQuery.getSoundexPersonNameSearchOnThreeNames(name1, name2, name3, birthyear, false, gender);
 		ListPart<Object[]> names = luceneQuery.listPartProjection(0, maxResults, "person.personId");
 		names.getList().forEach(x -> people.add(getPerson((Integer) x[0])));
 		
@@ -133,7 +133,7 @@ public class HibernatePersonDAO implements PersonDAO {
 		int maxResults = HibernatePersonDAO.getMaximumSearchResults();
 		LinkedHashSet<Person> people = new LinkedHashSet<>();
 		
-		LuceneQuery<PersonName> luceneQuery = personLuceneQuery.getSoundexPersonNameSearchOnTwoNames(searchName1, searchName2, birthyear, false, gender);;
+		LuceneQuery<PersonName> luceneQuery = personLuceneQuery.getSoundexPersonNameSearchOnTwoNames(searchName1, searchName2, birthyear, false, gender);
 		ListPart<Object[]> names = luceneQuery.listPartProjection(0, maxResults, "person.personId");
 		names.getList().forEach(x -> people.add(getPerson((Integer) x[0])));
 		

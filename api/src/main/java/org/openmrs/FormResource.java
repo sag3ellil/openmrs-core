@@ -9,6 +9,7 @@
  */
 package org.openmrs;
 
+import java.io.Serial;
 import java.util.Date;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -33,6 +34,7 @@ import org.openmrs.customdatatype.SingleCustomValue;
 @Audited
 public class FormResource extends BaseOpenmrsObject implements CustomValueDescriptor, SingleCustomValue<FormResource> {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	private Integer formResourceId;

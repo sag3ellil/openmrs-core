@@ -49,7 +49,7 @@ public class OpenmrsClassLoaderResourceAccessor extends ClassLoaderResourceAcces
 		}
 		if (!result.isEmpty() && result.size() > 1) {
 			try (InputStreamList oldResult = result) {
-				URI uri = oldResult.getURIs().get(0);
+				URI uri = oldResult.getURIs().getFirst();
 				result = new InputStreamList(uri, uri.toURL().openStream());
 			}
 

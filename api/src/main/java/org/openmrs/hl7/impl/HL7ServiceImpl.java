@@ -456,7 +456,7 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 			try {
 				List<User> users = Context.getUserService().getUsersByName(givenName,familyName,true);
 				if (users.size() == 1) {
-					return users.get(0).getUserId();
+					return users.getFirst().getUserId();
 				}
 				else if (users.size() > 1) {
 					//Return null if that user ambiguous
@@ -513,7 +513,7 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 		} else {
 			List<Person> persons = Context.getPersonService().getPeople(givenName + " " + familyName, null);
 			if (persons.size() == 1) {
-				return persons.get(0).getPersonId();
+				return persons.getFirst().getPersonId();
 			} else if (persons.isEmpty()) {
 				log.error("Couldn't find a person named " + givenName + " " + familyName);
 				return null;
@@ -662,7 +662,7 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 						log.warn("NO matches found for " + hl7PersonId);
 					} else if (matchingIds.size() == 1) {
 						// unique match -- we're done
-						return matchingIds.get(0).getPatient();
+						return matchingIds.getFirst().getPatient();
 					} else {
 						// ambiguous identifier
 						log.debug("Ambiguous identifier in PID. " + matchingIds.size() + " matches for identifier '"
@@ -936,7 +936,7 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 		if (!goodIdentifiers.isEmpty()) {
 			//If we have one identifier, set it as the preferred to make the validator happy.
 			if (goodIdentifiers.size() == 1) {
-				goodIdentifiers.get(0).setPreferred(true);
+				goodIdentifiers.getFirst().setPreferred(true);
 			}
 			
 			// cast the person as a Patient and add identifiers
@@ -983,8 +983,8 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 		}
 		
 		// save the new person or patient
-		if (person instanceof Patient) {
-			Context.getPatientService().savePatient((Patient) person);
+		if (person instanceof Patient patient) {
+			Context.getPatientService().savePatient(patient);
 		} else {
 			Context.getPersonService().savePerson(person);
 		}

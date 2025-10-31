@@ -361,7 +361,7 @@ public class OpenmrsClassLoader extends URLClassLoader {
 		//Shut down and remove all cache managers.
 		List<CacheManager> knownCacheManagers = CacheManager.ALL_CACHE_MANAGERS;
 		while (!knownCacheManagers.isEmpty()) {
-			CacheManager cacheManager = CacheManager.ALL_CACHE_MANAGERS.get(0);
+			CacheManager cacheManager = CacheManager.ALL_CACHE_MANAGERS.getFirst();
 			try {
 				//This shuts down and removes the cache manager.
 				cacheManager.shutdown();
@@ -475,7 +475,12 @@ public class OpenmrsClassLoader extends URLClassLoader {
 					}
 					
 					log.info("onShutdown Stopping thread: {}", thread.getName());
-					thread.stop();
+					/*
+					 * `Thread.stop()` always throws a `new UnsupportedOperationException()` in Java 21+.
+					 * For detailed migration instructions see the migration guide available at
+					 * https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/doc-files/threadPrimitiveDeprecation.html
+					 */
+					throw new UnsupportedOperationException();
 				}
 				catch (Exception ex) {
 					log.error(ex.getMessage(), ex);

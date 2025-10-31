@@ -211,7 +211,7 @@ public class UserServiceTest extends BaseContextSensitiveTest {
 		newUser.setUsername(someUser.getUsername());
 
 		DAOException exception = assertThrows(DAOException.class, () -> userService.createUser(newUser, SOME_VALID_PASSWORD));
-		assertThat(exception.getMessage(), is(String.format("Username %s or system id %s is already in use.",
+		assertThat(exception.getMessage(), is("Username %s or system id %s is already in use.".formatted(
 			newUser.getUsername(),
 			Context.getUserService().generateSystemId())));
 	}
@@ -224,7 +224,7 @@ public class UserServiceTest extends BaseContextSensitiveTest {
 		newUser.setSystemId(someUser.getSystemId());
 
 		DAOException exception = assertThrows(DAOException.class, () -> userService.createUser(newUser, SOME_VALID_PASSWORD));
-		assertThat(exception.getMessage(), is(String.format("Username %s or system id %s is already in use.", newUser.getUsername(), newUser.getSystemId())));
+		assertThat(exception.getMessage(), is("Username %s or system id %s is already in use.".formatted(newUser.getUsername(), newUser.getSystemId())));
 	}
 
 	@Test
@@ -235,7 +235,7 @@ public class UserServiceTest extends BaseContextSensitiveTest {
 		newUser.setUsername(someUser.getSystemId());
 
 		DAOException exception = assertThrows(DAOException.class, () -> userService.createUser(newUser, SOME_VALID_PASSWORD));
-		assertThat(exception.getMessage(), is(String.format("Username %s or system id %s is already in use.", newUser.getUsername(), Context.getUserService().generateSystemId())));
+		assertThat(exception.getMessage(), is("Username %s or system id %s is already in use.".formatted(newUser.getUsername(), Context.getUserService().generateSystemId())));
 	}
 
 	@Test
@@ -246,7 +246,7 @@ public class UserServiceTest extends BaseContextSensitiveTest {
 		newUser.setSystemId(someUser.getUsername());
 
 		DAOException exception = assertThrows(DAOException.class, () -> userService.createUser(newUser, SOME_VALID_PASSWORD));
-		assertThat(exception.getMessage(), is(String.format("Username %s or system id %s is already in use.", newUser.getUsername(), newUser.getSystemId())));
+		assertThat(exception.getMessage(), is("Username %s or system id %s is already in use.".formatted(newUser.getUsername(), newUser.getSystemId())));
 	}
 
 	@Test
@@ -258,7 +258,7 @@ public class UserServiceTest extends BaseContextSensitiveTest {
 		newUser.setSystemId(decorateWithLuhnIdentifier(someUser.getUsername()));
 
 		DAOException exception = assertThrows(DAOException.class, () ->  userService.createUser(newUser, SOME_VALID_PASSWORD));
-		assertThat(exception.getMessage(), is(String.format("Username %s or system id %s is already in use.", newUser.getUsername(), newUser.getSystemId())));
+		assertThat(exception.getMessage(), is("Username %s or system id %s is already in use.".formatted(newUser.getUsername(), newUser.getSystemId())));
 	}
 	
 	@Test
@@ -462,7 +462,7 @@ public class UserServiceTest extends BaseContextSensitiveTest {
 		Role role1 = new Role();
 		role1.setDescription("testing1");
 		role1.setRole("test1");
-		Privilege p1 = userService.getAllPrivileges().get(0);
+		Privilege p1 = userService.getAllPrivileges().getFirst();
 		Set<Privilege> privileges1 = new HashSet<>();
 		privileges1.add(p1);
 		role1.setPrivileges(privileges1);
@@ -470,7 +470,7 @@ public class UserServiceTest extends BaseContextSensitiveTest {
 		Role role2 = new Role();
 		role2.setDescription("testing2");
 		role2.setRole("test2");
-		Privilege p2 = userService.getAllPrivileges().get(0);
+		Privilege p2 = userService.getAllPrivileges().getFirst();
 		Set<Privilege> privileges2 = new HashSet<>();
 		privileges2.add(p2);
 		role2.setPrivileges(privileges2);

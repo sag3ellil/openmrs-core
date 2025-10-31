@@ -541,7 +541,7 @@ public class ConceptServiceImpl extends BaseOpenmrsService implements ConceptSer
 			if (drugs.isEmpty()) {
 				return null;
 			}
-			return drugs.get(0);
+			return drugs.getFirst();
 		}
 	}
 	
@@ -646,7 +646,7 @@ public class ConceptServiceImpl extends BaseOpenmrsService implements ConceptSer
 			log.warn("More than one ConceptClass found with name: " + name);
 		}
 		if (ccList.size() == 1) {
-			return ccList.get(0);
+			return ccList.getFirst();
 		}
 		return null;
 	}
@@ -1199,7 +1199,7 @@ public class ConceptServiceImpl extends BaseOpenmrsService implements ConceptSer
 		else if (concepts.size() > 1 && !concepts.get(1).getRetired()) {
 			throw new APIException("Concept.error.multiple.non.retired", new Object[] { code, sourceName });
 		} else {
-			return concepts.get(0);
+			return concepts.getFirst();
 		}
 	}
 	

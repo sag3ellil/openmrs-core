@@ -955,7 +955,7 @@ public class ObsServiceTest extends BaseContextSensitiveTest {
 		
 		assertEquals(2, obss.size());
 		
-		assertEquals(10, obss.get(0).getObsId().intValue());
+		assertEquals(10, obss.getFirst().getObsId().intValue());
 		assertEquals(9, obss.get(1).getObsId().intValue());
 	}
 	
@@ -1008,7 +1008,7 @@ public class ObsServiceTest extends BaseContextSensitiveTest {
 		
 		assertEquals(1, obss.size());
 		
-		assertEquals(9, obss.get(0).getObsId().intValue());
+		assertEquals(9, obss.getFirst().getObsId().intValue());
 	}
 	
 	/**
@@ -1209,7 +1209,7 @@ public class ObsServiceTest extends BaseContextSensitiveTest {
 		    Arrays.asList("concept", "obsDatetime"), null, null, null, null, false, null);
 		
 		// check the order of a few of the obs returned
-		assertEquals(11, obss.get(0).getObsId().intValue());
+		assertEquals(11, obss.getFirst().getObsId().intValue());
 		assertEquals(9, obss.get(1).getObsId().intValue());
 		assertEquals(16, obss.get(2).getObsId().intValue());
 	}
@@ -1227,7 +1227,7 @@ public class ObsServiceTest extends BaseContextSensitiveTest {
 		List<Obs> obss = obsService.getObservations(Collections.singletonList(new Person(8)), null, null, null, null, null,
 				new ArrayList<>(), null, null, null, null, false, null);
 		
-		assertEquals(8, obss.get(0).getObsId().intValue());
+		assertEquals(8, obss.getFirst().getObsId().intValue());
 		assertEquals(7, obss.get(1).getObsId().intValue());
 	}
 	
@@ -1268,7 +1268,7 @@ public class ObsServiceTest extends BaseContextSensitiveTest {
 		List<Obs> obss = obsService.getObservations("12345K");
 		
 		assertEquals(2, obss.size());
-		assertEquals(4, obss.get(0).getObsId().intValue());
+		assertEquals(4, obss.getFirst().getObsId().intValue());
 		assertEquals(3, obss.get(1).getObsId().intValue());
 	}
 	
@@ -1282,7 +1282,7 @@ public class ObsServiceTest extends BaseContextSensitiveTest {
 		List<Obs> obss = obsService.getObservations("5");
 		
 		assertEquals(2, obss.size());
-		assertEquals(16, obss.get(0).getObsId().intValue());
+		assertEquals(16, obss.getFirst().getObsId().intValue());
 	}
 	
 	/**
@@ -1295,7 +1295,7 @@ public class ObsServiceTest extends BaseContextSensitiveTest {
 		List<Obs> obss = obsService.getObservations("15");
 		
 		assertEquals(1, obss.size());
-		assertEquals(15, obss.get(0).getObsId().intValue());
+		assertEquals(15, obss.getFirst().getObsId().intValue());
 	}
 	
 	/**
@@ -1308,7 +1308,7 @@ public class ObsServiceTest extends BaseContextSensitiveTest {
 		List<Obs> obss = obsService.getObservationsByPerson(new Person(7));
 		
 		assertEquals(9, obss.size());
-		assertEquals(16, obss.get(0).getObsId().intValue());
+		assertEquals(16, obss.getFirst().getObsId().intValue());
 		assertEquals(7, obss.get(8).getObsId().intValue());
 	}
 	
@@ -1322,7 +1322,7 @@ public class ObsServiceTest extends BaseContextSensitiveTest {
 		List<Obs> obss = obsService.getObservationsByPersonAndConcept(new Person(7), new Concept(5089));
 		
 		assertEquals(3, obss.size());
-		assertEquals(16, obss.get(0).getObsId().intValue());
+		assertEquals(16, obss.getFirst().getObsId().intValue());
 		assertEquals(10, obss.get(1).getObsId().intValue());
 		assertEquals(7, obss.get(2).getObsId().intValue());
 	}
@@ -2012,7 +2012,7 @@ public class ObsServiceTest extends BaseContextSensitiveTest {
 
 		assertFalse(conceptReferenceRange.isEmpty());
 		
-		Double expectedHiAbsolute = conceptReferenceRange.get(0).getHiAbsolute();
+		Double expectedHiAbsolute = conceptReferenceRange.getFirst().getHiAbsolute();
 
 		Obs savedObs = obsService.getObsByUuid(obs.getUuid());
 

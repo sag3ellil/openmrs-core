@@ -9,6 +9,7 @@
  */
 package org.openmrs;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -213,8 +214,8 @@ public class PersonAttribute extends BaseChangeableOpenmrsData implements java.i
 	@Override
 	public String toString() {
 		Object o = getHydratedObject();
-		if (o instanceof Attributable) {
-			return ((Attributable) o).getDisplayString();
+		if (o instanceof Attributable attributable) {
+			return attributable.getDisplayString();
 		} else if (o != null) {
 			return o.toString();
 		}
@@ -255,8 +256,7 @@ public class PersonAttribute extends BaseChangeableOpenmrsData implements java.i
 			Class c = OpenmrsClassLoader.getInstance().loadClass(getAttributeType().getFormat());
 			try {
 				Object o = c.newInstance();
-				if (o instanceof Attributable) {
-					Attributable attr = (Attributable) o;
+				if (o instanceof Attributable attr) {
 					return attr.hydrate(getValue());
 				}
 			}
@@ -335,6 +335,7 @@ public class PersonAttribute extends BaseChangeableOpenmrsData implements java.i
 	 **/
 	public static class DefaultComparator implements Comparator<PersonAttribute>, Serializable {
 
+		@Serial
 		private static final long serialVersionUID = 1L;
 		
 		@Override

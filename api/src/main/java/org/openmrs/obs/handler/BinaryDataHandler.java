@@ -115,8 +115,8 @@ public class BinaryDataHandler extends AbstractHandler implements ComplexObsHand
 			fout = new FileOutputStream(outfile);
 			
 			Object data = obs.getComplexData().getData();
-			if (data instanceof byte[]) {
-				fout.write((byte[]) data);
+			if (data instanceof byte[] bytes) {
+				fout.write(bytes);
 			} else if (InputStream.class.isAssignableFrom(data.getClass())) {
 				try {
 					OpenmrsUtil.copyFile((InputStream) data, fout);

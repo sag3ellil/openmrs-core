@@ -77,7 +77,7 @@ public class PatientValidatorTest extends PersonValidatorTest {
 	
 	@Test
 	public void validate_shouldNotFailWhenPatientHasOnlyOneIdentifierAndItsNotPreferred() {
-		PatientIdentifierType patientIdentifierType = Context.getPatientService().getAllPatientIdentifierTypes(false).get(0);
+		PatientIdentifierType patientIdentifierType = Context.getPatientService().getAllPatientIdentifierTypes(false).getFirst();
 		Patient patient = new Patient();
 		PersonName pName = new PersonName();
 		pName.setGivenName("Tom");
@@ -125,7 +125,7 @@ public class PatientValidatorTest extends PersonValidatorTest {
 	@Override
 	@Test
 	public void validate_shouldPassValidationIfFieldLengthsAreCorrect() {
-		PatientIdentifierType patientIdentifierType = Context.getPatientService().getAllPatientIdentifierTypes(false).get(0);
+		PatientIdentifierType patientIdentifierType = Context.getPatientService().getAllPatientIdentifierTypes(false).getFirst();
 		Patient patient = new Patient();
 		PersonName pName = new PersonName();
 		pName.setGivenName("Tom");
@@ -163,7 +163,7 @@ public class PatientValidatorTest extends PersonValidatorTest {
 	@Override
 	@Test
 	public void validate_shouldFailValidationIfFieldLengthsAreNotCorrect() {
-		PatientIdentifierType patientIdentifierType = Context.getPatientService().getAllPatientIdentifierTypes(false).get(0);
+		PatientIdentifierType patientIdentifierType = Context.getPatientService().getAllPatientIdentifierTypes(false).getFirst();
 		Patient patient = new Patient();
 		PersonName pName = new PersonName();
 		pName.setGivenName("Tom");

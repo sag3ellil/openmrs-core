@@ -730,7 +730,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 			return null;
 		}
 
-		return concepts.get(0);
+		return concepts.getFirst();
 	}
 
 	/**
@@ -754,7 +754,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 			return null;
 		}
 
-		return concepts.get(0);
+		return concepts.getFirst();
 	}
 	
 	/**
@@ -956,7 +956,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 			return null;
 		}
 
-		return conceptNameTags.get(0);
+		return conceptNameTags.getFirst();
 	}
 	
 	/**
@@ -1741,7 +1741,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 			throw new APIException("ConceptReferenceTerm.foundMultipleTermsWithNameInSource",
 				new Object[]{name, conceptSource.getName()});
 		}
-		return terms.get(0);
+		return terms.getFirst();
 	}
 	
 	/**
@@ -1759,7 +1759,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 			        .filter(term -> !term.getRetired())
 					.collect(toList());
 			if (unretiredConceptReferenceTerms.size() == 1) {
-				return unretiredConceptReferenceTerms.get(0);
+				return unretiredConceptReferenceTerms.getFirst();
 			}
 			
 			// either more than one unretired concept term or more than one retired concept term
@@ -1767,7 +1767,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 			        new Object[] { code, conceptSource.getName() });
 		}
 		
-		return conceptReferenceTerms.get(0);
+		return conceptReferenceTerms.getFirst();
 	}
 
 	/**
@@ -1984,7 +1984,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 		Join<ConceptName, Concept> conceptJoin = root.join("concept");
 
 		Locale locale = Context.getLocale();
-		Locale language = new Locale(locale.getLanguage() + "%");
+		Locale language = Locale.of(locale.getLanguage() + "%");
 		List<Predicate> predicates = new ArrayList<>();
 
 		predicates.add(cb.or(cb.equal(root.get("locale"), locale), cb.like(root.get("locale").as(String.class), language.toString())));
@@ -2002,7 +2002,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 		LinkedHashSet<Concept> concepts = transformNamesToConcepts(list);
 
 		if (concepts.size() == 1) {
-			return concepts.iterator().next();
+			return concepts.getFirst();
 		} else if (list.isEmpty()) {
 			log.warn("No concept found for '" + name + "'");
 		} else {
@@ -2084,7 +2084,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 
 		predicates.add(cb.isFalse(root.get("voided")));
 		predicates.add(cb.or(cb.equal(root.get("locale"), name.getLocale()),
-			cb.equal(root.get("locale"), new Locale(name.getLocale().getLanguage()))));
+			cb.equal(root.get("locale"), Locale.of(name.getLocale().getLanguage()))));
 
 		if (Context.getAdministrationService().isDatabaseStringComparisonCaseSensitive()) {
 			predicates.add(cb.equal(cb.lower(root.get("name")), name.getName().toLowerCase()));
@@ -2177,7 +2177,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 				if (drugs.size() > 1) {
 					throw new DAOException("There are multiple matches for the highest-priority ConceptMapType");
 				} else if (drugs.size() == 1) {
-					return drugs.get(0);
+					return drugs.getFirst();
 				}
 			}
 		} else {
@@ -2188,7 +2188,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 			if (drugs.size() > 1) {
 				throw new DAOException("There are multiple matches for the highest-priority ConceptMapType");
 			} else if (drugs.size() == 1) {
-				return drugs.get(0);
+				return drugs.getFirst();
 			}
 		}
 		return null;

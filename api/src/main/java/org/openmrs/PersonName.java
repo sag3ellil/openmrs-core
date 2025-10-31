@@ -11,6 +11,7 @@ package org.openmrs;
 
 import static org.apache.commons.lang3.StringUtils.defaultString;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -525,6 +526,7 @@ public class PersonName extends BaseChangeableOpenmrsData implements java.io.Ser
 	 **/
 	public static class DefaultComparator implements Comparator<PersonName>, Serializable {
 
+		@Serial
 		private static final long serialVersionUID = 1L;
 		
 		@Override

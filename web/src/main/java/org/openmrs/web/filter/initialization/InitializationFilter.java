@@ -466,8 +466,6 @@ public class InitializationFilter extends StartupFilter {
 				return;
 			}
 			wizardModel.databaseConnection = httpRequest.getParameter("database_connection");
-			;
-			
 			wizardModel.createDatabaseUsername = Context.getRuntimeProperties().getProperty("connection.username",
 				wizardModel.createDatabaseUsername);
 			

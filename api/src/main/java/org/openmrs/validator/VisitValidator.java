@@ -130,7 +130,7 @@ public class VisitValidator extends BaseCustomizableValidator implements Validat
 			
 			List<Visit> overLappingVisits = Context.getVisitService().getVisits(visitSearchCriteria);
 			
-			boolean overlappingSameVisit = overLappingVisits.size() == 1 && overLappingVisits.get(0).getId().equals(visit.getId());
+			boolean overlappingSameVisit = overLappingVisits.size() == 1 && overLappingVisits.getFirst().getId().equals(visit.getId());
 					
 			if (!overlappingSameVisit && !overLappingVisits.isEmpty()) {
 				errors.rejectValue("startDatetime", "Visit.visitCannotOverlapAnotherVisitOfTheSamePatient",

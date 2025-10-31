@@ -661,7 +661,7 @@ public class ObsValidatorTest extends BaseContextSensitiveTest {
 
 		assertTrue(errors.hasErrors());
 		assertTrue(errors.hasFieldErrors("valueNumeric"));
-		assertEquals("error.value.outOfRange.high", errors.getAllErrors().get(0).getCode());
+		assertEquals("error.value.outOfRange.high", errors.getAllErrors().getFirst().getCode());
 	}
 
 	/**
@@ -687,7 +687,7 @@ public class ObsValidatorTest extends BaseContextSensitiveTest {
 
 		assertTrue(errors.hasErrors());
 		assertTrue(errors.hasFieldErrors("valueNumeric"));
-		assertEquals("error.value.outOfRange.high", errors.getAllErrors().get(0).getCode());
+		assertEquals("error.value.outOfRange.high", errors.getAllErrors().getFirst().getCode());
 	}
 
 	/**

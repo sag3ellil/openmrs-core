@@ -60,16 +60,16 @@ public class AllergiesTest extends BaseContextSensitiveTest {
 		assertEquals(allergies.getAllergyStatus(), Allergies.SEE_LIST);
 		
 		allergy = new Allergy();
-		allergies.add(0, allergy);
+		allergies.addFirst(allergy);
 		assertEquals(allergies.indexOf(allergy), 0);
-		assertEquals(allergies.get(0), allergy);
+		assertEquals(allergies.getFirst(), allergy);
 		assertNotEquals(allergies.get(1), allergy);
 		assertEquals(allergies.getAllergyStatus(), Allergies.SEE_LIST);
 		
 		allergy = new Allergy();
 		allergies.set(0, allergy);
 		assertEquals(allergies.size(), 2);
-		assertEquals(allergies.get(0), allergy);
+		assertEquals(allergies.getFirst(), allergy);
 		assertEquals(allergies.getAllergyStatus(), Allergies.SEE_LIST);
 	}
 	
@@ -109,11 +109,11 @@ public class AllergiesTest extends BaseContextSensitiveTest {
 		Allergy allergy1 = new Allergy();
 		Allergy allergy2 = new Allergy();
 		allergies.add(allergy1);
-		allergies.add(0, allergy2);
+		allergies.addFirst(allergy2);
 		assertEquals(allergies.getAllergyStatus(), Allergies.SEE_LIST);
 		
 		assertFalse(allergies.remove(new Allergy()));
-		assertEquals(allergies.remove(0), allergy2);
+		assertEquals(allergies.removeFirst(), allergy2);
 		assertEquals(allergies.size(), 1);
 		assertEquals(allergies.getAllergyStatus(), Allergies.SEE_LIST);
 		
@@ -231,8 +231,8 @@ public class AllergiesTest extends BaseContextSensitiveTest {
 		Allergy allergy2 = new Allergy();
 		allergy2.setAllergen(new Allergen(null, concept, null));
 		
-		allergies.add(0, allergy1);
-		assertThrows(APIException.class, () -> allergies.add(0, allergy2));
+		allergies.addFirst(allergy1);
+		assertThrows(APIException.class, () -> allergies.addFirst(allergy2));
 	}
 	
 	/**
@@ -246,8 +246,8 @@ public class AllergiesTest extends BaseContextSensitiveTest {
 		Allergy allergy2 = new Allergy();
 		allergy2.setAllergen(new Allergen(null, new Concept(2), null));
 		
-		allergies.add(0, allergy1);
-		allergies.add(0, allergy2);
+		allergies.addFirst(allergy1);
+		allergies.addFirst(allergy2);
 	}
 	
 	/**
@@ -263,8 +263,8 @@ public class AllergiesTest extends BaseContextSensitiveTest {
 		Allergy allergy2 = new Allergy();
 		allergy2.setAllergen(new Allergen(null, concept, "OTHER VALUE"));
 		
-		allergies.add(0, allergy1);
-		assertThrows(APIException.class, () -> allergies.add(0, allergy2));
+		allergies.addFirst(allergy1);
+		assertThrows(APIException.class, () -> allergies.addFirst(allergy2));
 	}
 	
 	/**
@@ -280,8 +280,8 @@ public class AllergiesTest extends BaseContextSensitiveTest {
 		Allergy allergy2 = new Allergy();
 		allergy2.setAllergen(new Allergen(null, concept, "OTHER VALUE2"));
 		
-		allergies.add(0, allergy1);
-		allergies.add(0, allergy2);
+		allergies.addFirst(allergy1);
+		allergies.addFirst(allergy2);
 	}
 	
 	/**

@@ -23,6 +23,6 @@ public class CachePropertiesUtilTest {
     public void shouldReturnCacheConfigsFromPropertiesFile(){
         List<CacheConfiguration> cacheConfigurations = CachePropertiesUtil.getCacheConfigurations();
         assertThat(cacheConfigurations.size(), is(2));
-        assertThat(cacheConfigurations.get(0).getTimeToIdleSeconds(), is(300L));
+        assertThat(cacheConfigurations.getFirst().getTimeToIdleSeconds(), is(300L));
     }
 }

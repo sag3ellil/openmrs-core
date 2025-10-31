@@ -107,7 +107,7 @@ public class ConceptReferenceRangeUtility {
 				false
 			);
 
-			return observations.isEmpty() ? null : observations.get(0);
+			return observations.isEmpty() ? null : observations.getFirst();
 		}
 
 		return null;

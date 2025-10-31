@@ -9,6 +9,8 @@
  */
 package org.openmrs;
 
+import java.io.Serial;
+
 import org.hibernate.envers.Audited;
 
 /**
@@ -19,7 +21,8 @@ import org.hibernate.envers.Audited;
  */
 @Audited
 public class VisitType extends BaseChangeableOpenmrsMetadata{
-	
+
+	@Serial
 	private static final long serialVersionUID = 1L;
 	
 	private Integer visitTypeId;

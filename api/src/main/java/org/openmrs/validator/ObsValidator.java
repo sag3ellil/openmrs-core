@@ -245,7 +245,7 @@ public class ObsValidator implements Validator {
 			for (Obs child : obs.getGroupMembers()) {
 				validateHelper(child, errors, ancestors, false);
 			}
-			ancestors.remove(ancestors.size() - 1);
+			ancestors.removeLast();
 		}
 		
 		if (obs.getValueCoded() != null && obs.getValueDrug() != null && obs.getValueDrug().getConcept() != null) {

@@ -244,7 +244,7 @@ public class ORUR01HandlerTest extends BaseContextSensitiveTest {
 		List<Obs> obsForPatient = Context.getObsService().getObservationsByPersonAndConcept(patient, question);
 		assertEquals(1, obsForPatient.size()); // there should be 1 obs now for
 		// this patient
-		assertEquals(3, obsForPatient.get(0).getEncounter().getId().intValue());
+		assertEquals(3, obsForPatient.getFirst().getEncounter().getId().intValue());
 		
 	}
 	
@@ -334,7 +334,7 @@ public class ORUR01HandlerTest extends BaseContextSensitiveTest {
 		// check for the proposed concept
 		List<ConceptProposal> proposedConcepts = conceptService.getConceptProposals("SEVERO DOLOR DE CABEZA");
 		assertEquals(1, proposedConcepts.size(), "There should be a proposed concept by this name");
-		assertEquals(encService.getEncountersByPatient(patient).get(0), proposedConcepts.get(0).getEncounter());
+		assertEquals(encService.getEncountersByPatient(patient).getFirst(), proposedConcepts.getFirst().getEncounter());
 	}
 	
 	/**
@@ -364,7 +364,7 @@ public class ORUR01HandlerTest extends BaseContextSensitiveTest {
 		
 		List<Obs> obss = obsService.getObservationsByPersonAndConcept(patient, concept);
 		
-		ConceptName name = obss.get(0).getValueCodedName();
+		ConceptName name = obss.getFirst().getValueCodedName();
 		assertNotNull(name);
 		assertEquals(2471, name.getId().intValue(), "The valueCodedName should be 2471");
 	}
@@ -939,7 +939,7 @@ public class ORUR01HandlerTest extends BaseContextSensitiveTest {
 		encForPatient2.removeAll(encForPatient1);//retain only the new encounter
 		assertThat(encForPatient2, hasSize(1));
 		
-		Provider newProvider = encForPatient2.get(0).getProvidersByRole(
+		Provider newProvider = encForPatient2.getFirst().getProvidersByRole(
 		    Context.getEncounterService().getEncounterRoleByUuid(EncounterRole.UNKNOWN_ENCOUNTER_ROLE_UUID)).iterator()
 		        .next();
 		assertEquals("a2c3868a-6b90-11e0-93c3-18a905e044dc", newProvider.getUuid());
@@ -969,7 +969,7 @@ public class ORUR01HandlerTest extends BaseContextSensitiveTest {
 		encForPatient2.removeAll(encForPatient1);
 		assertThat(encForPatient2, hasSize(1));
 		
-		Provider newProvider = encForPatient2.get(0).getProvidersByRole(
+		Provider newProvider = encForPatient2.getFirst().getProvidersByRole(
 		    Context.getEncounterService().getEncounterRoleByUuid(EncounterRole.UNKNOWN_ENCOUNTER_ROLE_UUID)).iterator()
 		        .next();
 		assertEquals("c2299800-cca9-11e0-9572-0800200c9a66", newProvider.getUuid());
@@ -1001,7 +1001,7 @@ public class ORUR01HandlerTest extends BaseContextSensitiveTest {
 		encForPatient2.removeAll(encForPatient1);
 		assertThat(encForPatient2, hasSize(1));
 		
-		Provider newProvider = encForPatient2.get(0).getProvidersByRole(
+		Provider newProvider = encForPatient2.getFirst().getProvidersByRole(
 		    Context.getEncounterService().getEncounterRoleByUuid(EncounterRole.UNKNOWN_ENCOUNTER_ROLE_UUID)).iterator()
 		        .next();
 		assertEquals("1f9e8336-6b95-11e0-93c3-18a905e044dc", newProvider.getUuid());
@@ -1035,7 +1035,7 @@ public class ORUR01HandlerTest extends BaseContextSensitiveTest {
 		encForPatient2.removeAll(encForPatient1);
 		assertThat(encForPatient2, hasSize(1));
 		
-		Provider newProvider = encForPatient2.get(0).getProvidersByRole(
+		Provider newProvider = encForPatient2.getFirst().getProvidersByRole(
 		    Context.getEncounterService().getEncounterRoleByUuid(EncounterRole.UNKNOWN_ENCOUNTER_ROLE_UUID)).iterator()
 		        .next();
 		assertEquals(4, newProvider.getId().intValue());
@@ -1085,7 +1085,7 @@ public class ORUR01HandlerTest extends BaseContextSensitiveTest {
 		assertEquals(originalEncounters + 1, encounters.size());
 		
 		// get last encounter
-		Encounter enc = encounters.get(encounters.size() - 1);
+		Encounter enc = encounters.getLast();
 		
 		// check the form uuid
 		Form form = enc.getForm();
@@ -1118,7 +1118,7 @@ public class ORUR01HandlerTest extends BaseContextSensitiveTest {
 		assertEquals(originalEncounters + 1, encounters.size());
 		
 		// get last encounter
-		Encounter enc = encounters.get(encounters.size() - 1);
+		Encounter enc = encounters.getLast();
 		
 		// check the form uuid
 		Form form = enc.getForm();
@@ -1151,7 +1151,7 @@ public class ORUR01HandlerTest extends BaseContextSensitiveTest {
 		assertEquals(originalEncounters + 1, encounters.size());
 		
 		// get last encounter
-		Encounter enc = encounters.get(encounters.size() - 1);
+		Encounter enc = encounters.getLast();
 		
 		// check the form id
 		Form form = enc.getForm();

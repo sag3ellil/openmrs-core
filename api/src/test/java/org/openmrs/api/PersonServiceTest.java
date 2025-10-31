@@ -208,7 +208,7 @@ public class PersonServiceTest extends BaseContextSensitiveTest {
 		assertNotNull(patientIdTypes);
 		PatientIdentifier patientIdentifier = new PatientIdentifier();
 		patientIdentifier.setIdentifier("123-0");
-		patientIdentifier.setIdentifierType(patientIdTypes.get(0));
+		patientIdentifier.setIdentifierType(patientIdTypes.getFirst());
 		patientIdentifier.setLocation(new Location(1));
 		patientIdentifier.setPreferred(true);
 		Set<PatientIdentifier> patientIdentifiers = new TreeSet<>();
@@ -333,7 +333,7 @@ public class PersonServiceTest extends BaseContextSensitiveTest {
 		// Verify # of results and which results we have received
 		assertEquals(5, res.size());
 		for (Relationship rr : res) {
-			if (!rr.equals(rels.get(0)) && !rr.equals(rels.get(2)) && !rr.equals(rels.get(3)) && !rr.equals(rels.get(7))
+			if (!rr.equals(rels.getFirst()) && !rr.equals(rels.get(2)) && !rr.equals(rels.get(3)) && !rr.equals(rels.get(7))
 			        && !rr.equals(rels.get(8))) {
 				if (rr.equals(rels.get(1))) {
 					fail("unexpected relationship 1 in results from getRelationshipsByPerson with effeciveDate of 1988-01-01");
@@ -1040,7 +1040,7 @@ public class PersonServiceTest extends BaseContextSensitiveTest {
 		// Verify # of results and which results we have received
 		assertEquals(5, res.size());
 		for (Relationship rr : res) {
-			if (!rr.equals(rels.get(0)) && !rr.equals(rels.get(2)) && !rr.equals(rels.get(3)) && !rr.equals(rels.get(7))
+			if (!rr.equals(rels.getFirst()) && !rr.equals(rels.get(2)) && !rr.equals(rels.get(3)) && !rr.equals(rels.get(7))
 			        && !rr.equals(rels.get(8))) {
 				if (rr.equals(rels.get(1))) {
 					fail("unexpected relationship 1 in results from getRelationshipsByPerson with effeciveDate of 1988-01-01");
@@ -1133,7 +1133,7 @@ public class PersonServiceTest extends BaseContextSensitiveTest {
 		// Verify # of results and which results we have received
 		assertEquals(5, res.size());
 		for (Relationship rr : res) {
-			if (!rr.equals(rels.get(0)) && !rr.equals(rels.get(2)) && !rr.equals(rels.get(3)) && !rr.equals(rels.get(7))
+			if (!rr.equals(rels.getFirst()) && !rr.equals(rels.get(2)) && !rr.equals(rels.get(3)) && !rr.equals(rels.get(7))
 			        && !rr.equals(rels.get(8))) {
 				if (rr.equals(rels.get(1))) {
 					fail("unexpected relationship 1 in results from getRelationshipsByPerson effective between 1987-01-01 and 1988-01-01");
@@ -1511,8 +1511,8 @@ public class PersonServiceTest extends BaseContextSensitiveTest {
 		Context.getPersonService().savePersonMergeLog(personMergeLog);
 		List<PersonMergeLog> result = Context.getPersonService().getAllPersonMergeLogs(true);
 		assertEquals(1, result.size(), "could not retrieve expected number of PersonMergeLog objects");
-		assertNotNull(result.get(0), "PersonMergeLog at index 0 is null");
-		assertNotNull(result.get(0).getPersonMergeLogData(), "PersonMergeLog data has not been deserialized");
+		assertNotNull(result.getFirst(), "PersonMergeLog at index 0 is null");
+		assertNotNull(result.getFirst().getPersonMergeLogData(), "PersonMergeLog data has not been deserialized");
 	}
 	
 	/**
@@ -2357,7 +2357,7 @@ public class PersonServiceTest extends BaseContextSensitiveTest {
 		
 		// This is a bug Trunk-5149
 		assertEquals(result.size(), 1);
-		assertNull(result.get(0));
+		assertNull(result.getFirst());
 	}
 	
 	@Test
@@ -2371,7 +2371,7 @@ public class PersonServiceTest extends BaseContextSensitiveTest {
 		
 		// This is probably a bug TRUNK-5148
 		assertEquals(result.size(), 1);
-		assertNull(result.get(0));
+		assertNull(result.getFirst());
 	}
 	
 	@Test

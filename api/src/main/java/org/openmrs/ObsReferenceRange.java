@@ -21,6 +21,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import java.io.Serial;
+
 /**
  * ObsReferenceRange is typically a reference range of a numeric Observation 
  * The reference range is created at the point of creating {@link Obs}
@@ -31,7 +33,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "obs_reference_range")
 public class ObsReferenceRange extends BaseReferenceRange {
-	
+
+	@Serial
 	private static final long serialVersionUID = 473299L;
 
 	@DocumentId

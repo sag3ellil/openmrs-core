@@ -194,7 +194,7 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(1, people.size());
-		assertEquals("Bilbo Odilon", people.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", people.getFirst().getGivenName());
 	}
 	
 	/**
@@ -210,7 +210,7 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(1, people.size());
-		assertEquals("Bilbo Odilon", people.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", people.getFirst().getGivenName());
 	}
 	
 	/**
@@ -228,7 +228,7 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(1, people.size());
-		assertEquals("Bilbo Odilon", people.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", people.getFirst().getGivenName());
 	}
 	
 	/**
@@ -244,9 +244,9 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		
 		assertEquals(2, people.size());
 		
-		assertEquals("Baggins", people.get(0).getFamilyName());
+		assertEquals("Baggins", people.getFirst().getFamilyName());
 		assertEquals("Baggins", people.get(1).getFamilyName());
-		assertFalse(people.get(0).getGivenName().equalsIgnoreCase(people.get(1).getGivenName()));
+		assertFalse(people.getFirst().getGivenName().equalsIgnoreCase(people.get(1).getGivenName()));
 	}
 	
 	/**
@@ -263,9 +263,9 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		
 		assertEquals(2, people.size());
 		
-		assertEquals("Baggins", people.get(0).getFamilyName());
+		assertEquals("Baggins", people.getFirst().getFamilyName());
 		assertEquals("Baggins", people.get(1).getFamilyName());
-		assertFalse(people.get(0).getGivenName().equalsIgnoreCase(people.get(1).getGivenName()));
+		assertFalse(people.getFirst().getGivenName().equalsIgnoreCase(people.get(1).getGivenName()));
 	}
 	
 	/**
@@ -288,7 +288,7 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(1, people.size());
-		assertEquals("Bilbo Odilon", people.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", people.getFirst().getGivenName());
 	}
 	
 	/**
@@ -300,7 +300,7 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(1, people.size());
-		assertEquals("Frodo Ansilon", people.get(0).getGivenName());
+		assertEquals("Frodo Ansilon", people.getFirst().getGivenName());
 	}
 	
 	/**
@@ -313,9 +313,9 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		
 		assertEquals(2, people.size());
 		
-		assertEquals("Baggins", people.get(0).getFamilyName());
+		assertEquals("Baggins", people.getFirst().getFamilyName());
 		assertEquals("Baggins", people.get(1).getFamilyName());
-		assertFalse(people.get(0).getGivenName().equalsIgnoreCase(people.get(1).getGivenName()));
+		assertFalse(people.getFirst().getGivenName().equalsIgnoreCase(people.get(1).getGivenName()));
 	}
 	
 	/**
@@ -328,9 +328,9 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		
 		assertEquals(2, people.size());
 		
-		assertEquals("Baggins", people.get(0).getFamilyName());
+		assertEquals("Baggins", people.getFirst().getFamilyName());
 		assertEquals("Baggins", people.get(1).getFamilyName());
-		assertFalse(people.get(0).getGivenName().equalsIgnoreCase(people.get(1).getGivenName()));
+		assertFalse(people.getFirst().getGivenName().equalsIgnoreCase(people.get(1).getGivenName()));
 	}
 
     /**
@@ -380,7 +380,7 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(1, people.size());
-		assertEquals("Bilbo Odilon", people.get(0).getGivenName());
+		assertEquals("Bilbo Odilon", people.getFirst().getGivenName());
 	}
 	
 	/**
@@ -393,7 +393,7 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(1, people.size());
-		assertEquals("Frodo Ansilon", people.get(0).getGivenName());
+		assertEquals("Frodo Ansilon", people.getFirst().getGivenName());
 	}
 	
 	/**
@@ -408,9 +408,9 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(2, people.size());
-		assertEquals("Baggins", people.get(0).getFamilyName());
+		assertEquals("Baggins", people.getFirst().getFamilyName());
 		assertEquals("Baggins", people.get(1).getFamilyName());
-		assertFalse(people.get(0).getGivenName().equalsIgnoreCase(people.get(1).getGivenName()));
+		assertFalse(people.getFirst().getGivenName().equalsIgnoreCase(people.get(1).getGivenName()));
 	}
 	
 	/**
@@ -422,7 +422,7 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(1, people.size());
-		assertEquals("bravo", people.get(0).getGivenName());
+		assertEquals("bravo", people.getFirst().getGivenName());
 	}
 	
 	/**
@@ -434,9 +434,9 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(2, people.size());
-		assertEquals("alpha", people.get(0).getGivenName());
+		assertEquals("alpha", people.getFirst().getGivenName());
 		assertEquals("alpha", people.get(1).getGivenName());
-		assertTrue(people.get(0).getMiddleName() != people.get(1).getMiddleName());
+		assertTrue(people.getFirst().getMiddleName() != people.get(1).getMiddleName());
 	}
 	
 	/**
@@ -448,7 +448,7 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(1, people.size());
-		assertEquals("echo", people.get(0).getMiddleName());
+		assertEquals("echo", people.getFirst().getMiddleName());
 	}
 	
 	/**
@@ -460,9 +460,9 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(2, people.size());
-		assertEquals("foxtrot", people.get(0).getMiddleName());
+		assertEquals("foxtrot", people.getFirst().getMiddleName());
 		assertEquals("foxtrot", people.get(1).getMiddleName());
-		assertTrue(people.get(0).getFamilyName() != people.get(1).getFamilyName());
+		assertTrue(people.getFirst().getFamilyName() != people.get(1).getFamilyName());
 	}
 	
 	/**
@@ -474,7 +474,7 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(1, people.size());
-		assertEquals("lima", people.get(0).getFamilyName());
+		assertEquals("lima", people.getFirst().getFamilyName());
 	}
 	
 	/**
@@ -486,9 +486,9 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(2, people.size());
-		assertEquals("kilo", people.get(0).getFamilyName());
+		assertEquals("kilo", people.getFirst().getFamilyName());
 		assertEquals("kilo", people.get(1).getFamilyName());
-		assertTrue(people.get(0).getGivenName() != people.get(1).getGivenName());
+		assertTrue(people.getFirst().getGivenName() != people.get(1).getGivenName());
 	}
 	
 	/**
@@ -500,7 +500,7 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(1, people.size());
-		assertEquals("alpha", people.get(0).getGivenName());
+		assertEquals("alpha", people.getFirst().getGivenName());
 	}
 	
 	/**
@@ -512,9 +512,9 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(2, people.size());
-		assertEquals("papa", people.get(0).getPersonName().getFamilyName2());
+		assertEquals("papa", people.getFirst().getPersonName().getFamilyName2());
 		assertEquals("papa", people.get(1).getPersonName().getFamilyName2());
-		assertTrue(people.get(0).getFamilyName() != people.get(1).getFamilyName());
+		assertTrue(people.getFirst().getFamilyName() != people.get(1).getFamilyName());
 	}
 	
 	/**
@@ -526,7 +526,7 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(1, people.size());
-		assertEquals("alpha", people.get(0).getGivenName());
+		assertEquals("alpha", people.getFirst().getGivenName());
 	}
 	
 	/**
@@ -593,7 +593,7 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(1, people.size());
-		assertEquals("dead-charlie", people.get(0).getGivenName());
+		assertEquals("dead-charlie", people.getFirst().getGivenName());
 	}
 	
 	/**
@@ -605,9 +605,9 @@ public class HibernatePersonDAOTest extends BaseContextSensitiveTest {
 		logPeople(people);
 		
 		assertEquals(2, people.size());
-		assertEquals("dead-papa", people.get(0).getPersonName().getFamilyName2());
+		assertEquals("dead-papa", people.getFirst().getPersonName().getFamilyName2());
 		assertEquals("dead-papa", people.get(1).getPersonName().getFamilyName2());
-		assertTrue(people.get(0).getFamilyName() != people.get(1).getFamilyName());
+		assertTrue(people.getFirst().getFamilyName() != people.get(1).getFamilyName());
 	}
 	
 	/**

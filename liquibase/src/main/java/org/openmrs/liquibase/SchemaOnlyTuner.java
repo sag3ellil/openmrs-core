@@ -40,7 +40,7 @@ public class SchemaOnlyTuner extends AbstractSnapshotTuner {
 	}
 	
 	Document detachChangeSet(Document document, String tableName) {
-		XPath xPath = DocumentHelper.createXPath(String.format("//dbchangelog:createTable[@tableName=\"%s\"]", tableName));
+		XPath xPath = DocumentHelper.createXPath("//dbchangelog:createTable[@tableName=\"%s\"]".formatted(tableName));
 		xPath.setNamespaceURIs(getNamespaceUris());
 		
 		Node node = xPath.selectSingleNode(document);
@@ -88,10 +88,10 @@ public class SchemaOnlyTuner extends AbstractSnapshotTuner {
 	 * @return a boolean value for unit testing
 	 */
 	boolean assertLongtextNodes(List<Node> nodes) {
-		assert nodes.size() == 1 : String
-		        .format("replacing the column type 'LONGTEXT' failed as the number of nodes is not 1 but %d", nodes.size());
+		assert nodes.size() == 1 : "replacing the column type 'LONGTEXT' failed as the number of nodes is not 1 but %d"
+			.formatted(nodes.size());
 		
-		Node node = nodes.get(0);
+		Node node = nodes.getFirst();
 		Element grandParent = node.getParent().getParent();
 		
 		assert grandParent.attributeValue("tableName").equals(

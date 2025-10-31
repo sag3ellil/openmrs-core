@@ -131,7 +131,7 @@ public class OrderSetServiceTest extends BaseContextSensitiveTest {
 		for (OrderSet oS : orderSets) {
 			numberOfOrderSetMembers = numberOfOrderSetMembers + oS.getOrderSetMembers().size();
 		}
-		assertEquals(new Integer(4), numberOfOrderSetMembers);
+		assertEquals(Integer.valueOf(4), numberOfOrderSetMembers);
 	}
 	
 	@Test
@@ -235,7 +235,7 @@ public class OrderSetServiceTest extends BaseContextSensitiveTest {
 		OrderSet savedOrderSet = orderSetService.saveOrderSet(newOrderSet);
 		Context.flushSession();
 		
-		assertEquals(firstOrderSetMember.getUuid(), savedOrderSet.getOrderSetMembers().get(0).getUuid());
+		assertEquals(firstOrderSetMember.getUuid(), savedOrderSet.getOrderSetMembers().getFirst().getUuid());
 		assertEquals(thirdOrderSetMember.getUuid(), savedOrderSet.getOrderSetMembers().get(1).getUuid());
 		assertEquals(secondOrderSetMember.getUuid(), savedOrderSet.getOrderSetMembers().get(2).getUuid());
 	}
@@ -274,7 +274,7 @@ public class OrderSetServiceTest extends BaseContextSensitiveTest {
 
 		OrderSet orderSet = orderSetService.getOrderSet(2000);
 		int initialCountOfMembers = orderSet.getOrderSetMembers().size();
-		OrderSetMember orderSetMember = orderSet.getOrderSetMembers().get(0);
+		OrderSetMember orderSetMember = orderSet.getOrderSetMembers().getFirst();
 
 		//Retiring an orderSetMember in an existing list of orderSetMembers
 		orderSet.retireOrderSetMember(orderSetMember);
@@ -295,7 +295,7 @@ public class OrderSetServiceTest extends BaseContextSensitiveTest {
 
 		OrderSet orderSet = orderSetService.getOrderSet(2001);
 		int initialCountOfMembers = orderSet.getOrderSetMembers().size();
-		OrderSetMember orderSetMember = orderSet.getOrderSetMembers().get(0);
+		OrderSetMember orderSetMember = orderSet.getOrderSetMembers().getFirst();
 
 		//Removing an orderSetMember in an existing list of orderSetMembers
 		orderSet.removeOrderSetMember(orderSetMember);

@@ -138,7 +138,7 @@ public class ExistingOrNewVisitAssignmentHandler extends ExistingVisitAssignment
 			throw new APIException("GlobalProperty.error.loadVisitType", new Object[] { encounterType.getName() });
 		}
 		
-		return Context.getVisitService().getAllVisitTypes().get(0);
+		return Context.getVisitService().getAllVisitTypes().getFirst();
 	}
 	
 	@Override

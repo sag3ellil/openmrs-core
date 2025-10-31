@@ -78,13 +78,13 @@ public class ExceptionUtilTest {
 				throwExceptionChain(classesInChain.subList(0, classesInChain.size() - 1));
 			}
 			catch (Exception ex) {
-				Class<? extends Exception> outer = classesInChain.get(classesInChain.size() - 1);
+				Class<? extends Exception> outer = classesInChain.getLast();
 				Constructor<? extends Exception> constructor = outer.getConstructor(Throwable.class);
 				throw constructor.newInstance(ex);
 			}
 		} else {
 			// length should be 1
-			Class<? extends Exception> classToThrow = classesInChain.get(0);
+			Class<? extends Exception> classToThrow = classesInChain.getFirst();
 			throw classToThrow.newInstance();
 		}
 	}

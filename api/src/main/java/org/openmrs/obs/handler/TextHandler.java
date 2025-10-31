@@ -123,8 +123,8 @@ public class TextHandler extends AbstractHandler implements ComplexObsHandler {
 			fout = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outfile), StandardCharsets.UTF_8));
 			Reader tempRd;
 			Object data = obs.getComplexData().getData();
-			if (data instanceof char[]) {
-				fout.write((char[]) data);
+			if (data instanceof char[] chars) {
+				fout.write(chars);
 			} else if (Reader.class.isAssignableFrom(data.getClass())) {
 				try {
 					tempRd = new BufferedReader((Reader) data);

@@ -539,7 +539,7 @@ public class EncounterServiceTest extends BaseContextSensitiveTest {
 		es.saveEncounter(encounter);
 		
 		String sql = "SELECT voided FROM orders WHERE order_id=7";
-		Boolean voided = (Boolean) Context.getAdministrationService().executeSQL(sql, true).get(0).get(0);
+		Boolean voided = (Boolean) Context.getAdministrationService().executeSQL(sql, true).getFirst().getFirst();
 		assertFalse(voided);
 	}
 	
@@ -1214,7 +1214,7 @@ public class EncounterServiceTest extends BaseContextSensitiveTest {
 		        .setFromDate(ymd.parse("2004-12-31")).setIncludeVoided(false).createEncounterSearchCriteria();
 		List<Encounter> encounters = Context.getEncounterService().getEncounters(encounterSearchCriteria);
 		assertEquals(5, encounters.size());
-		assertEquals(1, encounters.get(0).getEncounterId().intValue());
+		assertEquals(1, encounters.getFirst().getEncounterId().intValue());
 		
 		// test for exact date search
 		encounterSearchCriteria = new EncounterSearchCriteriaBuilder().setFromDate(ymd.parse("2005-01-01"))
@@ -1227,7 +1227,7 @@ public class EncounterServiceTest extends BaseContextSensitiveTest {
 		        .setIncludeVoided(false).createEncounterSearchCriteria();
 		encounters = Context.getEncounterService().getEncounters(encounterSearchCriteria);
 		assertEquals(4, encounters.size());
-		assertEquals(3, encounters.get(0).getEncounterId().intValue());
+		assertEquals(3, encounters.getFirst().getEncounterId().intValue());
 		assertEquals(4, encounters.get(1).getEncounterId().intValue());
 		assertEquals(5, encounters.get(2).getEncounterId().intValue());
 	}
@@ -1244,7 +1244,7 @@ public class EncounterServiceTest extends BaseContextSensitiveTest {
 		        .setIncludeVoided(true).createEncounterSearchCriteria();
 		List<Encounter> encounters = Context.getEncounterService().getEncounters(encounterSearchCriteria);
 		assertEquals(2, encounters.size());
-		assertEquals(15, encounters.get(0).getEncounterId().intValue());
+		assertEquals(15, encounters.getFirst().getEncounterId().intValue());
 		assertEquals(1, encounters.get(1).getEncounterId().intValue());
 	}
 	
@@ -1619,7 +1619,7 @@ public class EncounterServiceTest extends BaseContextSensitiveTest {
 		List<EncounterType> types = encounterService.findEncounterTypes("Test Enc");
 		
 		// make sure the order is id 2, 3, 1
-		assertEquals(2, types.get(0).getEncounterTypeId().intValue());
+		assertEquals(2, types.getFirst().getEncounterTypeId().intValue());
 		assertEquals(1, types.get(1).getEncounterTypeId().intValue());
 		assertEquals(3, types.get(2).getEncounterTypeId().intValue());
 		
@@ -2321,7 +2321,7 @@ public class EncounterServiceTest extends BaseContextSensitiveTest {
 		List<Encounter> encs = Context.getEncounterService().getEncountersNotAssignedToAnyVisit(
 		    Context.getPatientService().getPatient(10));
 		assertEquals(2, encs.size());
-		assertNull(encs.get(0).getVisit());
+		assertNull(encs.getFirst().getVisit());
 		assertNull(encs.get(1).getVisit());
 	}
 	
@@ -3037,7 +3037,7 @@ public class EncounterServiceTest extends BaseContextSensitiveTest {
 		
 		assertNotNull(encounterRoles, "valid EncounterROle object should be returned");
 		assertEquals(encounterRoles.size(), 1);
-		assertEquals(encounterRoles.get(0).getName(), name);
+		assertEquals(encounterRoles.getFirst().getName(), name);
 	}
 	
 	/**
@@ -3067,11 +3067,11 @@ public class EncounterServiceTest extends BaseContextSensitiveTest {
 		
 		//check obs
 		assertEquals(2, transferredObservations.size());
-		assertEquals(targetPatient, transferredObservations.get(0).getPerson());
+		assertEquals(targetPatient, transferredObservations.getFirst().getPerson());
 		assertEquals(targetPatient, transferredObservations.get(1).getPerson());
 		
 		// however any references from obs to orders should be preserved
-		assertNotNull(transferredObservations.get(0).getOrder());
+		assertNotNull(transferredObservations.getFirst().getOrder());
 		assertNotNull(transferredObservations.get(1).getOrder());
 		
 		//check if form is transferred
@@ -3155,8 +3155,8 @@ public class EncounterServiceTest extends BaseContextSensitiveTest {
 		List<Order> orders = new ArrayList<>(
 				Context.getEncounterService().getEncounterByUuid(encounter.getUuid()).getOrders());
 		
-		assertNotNull(orders.get(0).getOrderGroup(), "OrderGroup is saved");
-		assertEquals(true, orders.get(0).getOrderGroup().equals(orders.get(1).getOrderGroup()), "OrderGroup isa same for both the orders ");
+		assertNotNull(orders.getFirst().getOrderGroup(), "OrderGroup is saved");
+		assertEquals(true, orders.getFirst().getOrderGroup().equals(orders.get(1).getOrderGroup()), "OrderGroup isa same for both the orders ");
 	}
 	
 	@Test

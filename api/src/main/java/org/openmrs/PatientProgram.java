@@ -225,7 +225,7 @@ public class PatientProgram extends BaseChangeableOpenmrsData implements Customi
 		PatientState last = null;
 		PatientState nextToLast = null;
 		if (!states.isEmpty()) {
-			last = states.get(states.size() - 1);
+			last = states.getLast();
 		}
 		if (states.size() > 1) {
 			nextToLast = states.get(states.size() - 2);
@@ -493,7 +493,7 @@ public class PatientProgram extends BaseChangeableOpenmrsData implements Customi
                 this.addAttribute(attribute);
             } else {
                 if (this.getActiveAttributes(attribute.getAttributeType()).size() == 1) {
-                    PatientProgramAttribute patientProgramAttribute = this.getActiveAttributes(attribute.getAttributeType()).get(0);
+                    PatientProgramAttribute patientProgramAttribute = this.getActiveAttributes(attribute.getAttributeType()).getFirst();
                     if (!patientProgramAttribute.getValue().equals(attribute.getValue())) {
                         if (patientProgramAttribute.getId() != null) {
                             patientProgramAttribute.setVoided(Boolean.TRUE);
